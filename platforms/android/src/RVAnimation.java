@@ -7,12 +7,18 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.nineoldandroids.animation.Animator;
+
+/**
+ * Created by abhik on 26-10-2016.
+ */
 
 public class RVAnimation {
 
@@ -33,15 +39,9 @@ public class RVAnimation {
         view.setVisibility(View.INVISIBLE);
     }
 
-    public static void animateUI(Activity context)
+    public static void animateUI(Activity context, int i)
     {
-        // fakeR = new FakeR(context);
-        // Animation animation = AnimationUtils.loadAnimation(context, fakeR.getId(context, "anim", "bounce_and_dissapear"));
-        // view.startAnimation(animation);
-        View view = context.getWindow().getDecorView().findViewWithTag("view");
-        YoYo.with(Techniques.Bounce)
-                .duration(500)
-                .playOn(view);
+
     }
 
     public static void MakeListViewWithAnimations(final Activity activity)
@@ -82,4 +82,18 @@ public class RVAnimation {
             }
         });
     }
+
+    public static void changeButtonMargin(Activity activity, int x, int y)
+    {
+        Button ivBowl = new Button(activity);
+        ivBowl.setText("hi");
+        RelativeLayout.LayoutParams layoutParams = new  RelativeLayout.LayoutParams(70, 70);
+        layoutParams.setMargins(x, y, 0, 0); // left, top, right, bottom
+        ivBowl.setLayoutParams(layoutParams);
+        RelativeLayout relativeLayout = (RelativeLayout) activity.getWindow().getDecorView().findViewWithTag("rl_anim_parent");
+        relativeLayout.addView(ivBowl);
+
+    }
+
+
 }
