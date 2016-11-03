@@ -28,23 +28,23 @@ function initializeUI() {
         popup.show();
         document.getElementById('btn-animate-list').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
-            $("#btn-add-listview, #btn-add-newdata").show();
+            $("#btn-add-listview").show();
             animateList();
         });
         document.getElementById('btn-change-margin').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
-            $("#btn-animate-list, #btn-add-newdata").show();
+            $("#btn-animate-list").show();
             changeButtonMargin();
         });
         document.getElementById('btn-add-listview').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
-            $("#btn-animate-list, #btn-add-newdata").show();
+            $("#btn-animate-list").show();
             addListView();
         });
 
         document.getElementById('btn-add-newdata').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
-            $("#btn-animate-list, #btn-add-newdata").show();
+            $("#btn-animate-list").show();
             addNewItem();
         });
     });
@@ -109,7 +109,7 @@ var listObj;
 var listViewPopup;
 
 function addListView() {
-    var jsonObj = ["name", "rahul", "abd"];
+    var jsonObj = ["name", "rahul", "abd", "dsadsa", "dsasadd", "qwewq", "last item"];
     // if (listObj == undefined) {
     listObj = new ace.NativeObject("com.rahulverlekar.animations.BidchatMessageList", ace.android.getActivity(), JSON.stringify(jsonObj));
     // };
