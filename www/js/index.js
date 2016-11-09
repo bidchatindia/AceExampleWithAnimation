@@ -28,25 +28,36 @@ function initializeUI() {
         popup.show();
         document.getElementById('btn-animate-list').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
-            $("#btn-add-listview").show();
+            $("#btn-add-listview, #btn-change-margin").show();
             animateList();
         });
-        document.getElementById('btn-change-margin').addEventListener("click", function clickedOnBtn() {
+        /*document.getElementById('btn-change-margin').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
-            $("#btn-animate-list").show();
+            $("#btn-animate-list, #btn-change-margin").show();
             changeButtonMargin();
-        });
+        });*/
         document.getElementById('btn-add-listview').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
-            $("#btn-animate-list").show();
+            $("#btn-animate-list, #btn-change-margin").show();
             addListView();
+            setInterval(
+            function(){ 
+                addNewItem();
+            }, 3000);
         });
 
         document.getElementById('btn-add-newdata').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
-            $("#btn-animate-list").show();
+            $("#btn-animate-list, #btn-change-margin").show();
             addNewItem();
         });
+
+        document.getElementById('btn-change-margin').addEventListener("click", function clickedOnBtn() {
+            $("input").hide();
+            $("#btn-change-margin, #btn-change-margin").show();
+            changeViewMargin();
+        });
+
     });
 
 }
@@ -91,6 +102,11 @@ function changeButtonMargin() {
         var obj = new ace.NativeObject(ace.valueOn({ android: "com.rahulverlekar.animations.RVAnimation" }));
         obj.invoke("changeButtonMargin", ace.android.getActivity(), bodyRect.top, bodyRect.left);
     });
+}
+
+function changeViewMargin() {
+    var obj = new ace.NativeObject(ace.valueOn({ android: "com.rahulverlekar.animations.RVAnimation" }));
+    obj.invoke("changeViewMargin", ace.android.getActivity(), 150, 25, "lv_anim_table");
 }
 
 function onButtonClick() {

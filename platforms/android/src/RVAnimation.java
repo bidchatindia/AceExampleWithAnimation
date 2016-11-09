@@ -16,6 +16,12 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.nineoldandroids.animation.Animator;
 
+import org.apache.cordova.CordovaActivity;
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.PluginResult;
+
+import run.ace.Utils;
+
 /**
  * Created by abhik on 26-10-2016.
  */
@@ -93,6 +99,20 @@ public class RVAnimation {
         RelativeLayout relativeLayout = (RelativeLayout) activity.getWindow().getDecorView().findViewWithTag("rl_anim_parent");
         relativeLayout.addView(ivBowl);
 
+    }
+
+    public static void changeViewMargin(Activity activity, int x, int y, String tag)
+    {
+        View rootView = activity.getWindow().getDecorView();
+        View view = rootView.findViewWithTag(tag);
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+        layoutParams.setMargins(x, y, 0, 0); // left, top, right, bottom
+        view.setLayoutParams(layoutParams);
+    }
+
+    public static void waitForSometime(CordovaWebView webView)
+    {
+        webView.sendPluginResult();
     }
 
 

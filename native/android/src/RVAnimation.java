@@ -95,5 +95,14 @@ public class RVAnimation {
 
     }
 
+    public static void changeViewMargin(Activity activity, int x, int y, String tag)
+    {
+        View rootView = activity.getWindow().getDecorView();
+        View view = rootView.findViewWithTag(tag);
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
+        layoutParams.setMargins(x, y, 0, 0); // left, top, right, bottom
+        view.setLayoutParams(layoutParams);
+    }
+
 
 }

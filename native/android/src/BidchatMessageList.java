@@ -2,6 +2,7 @@ package com.rahulverlekar.animations;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -12,6 +13,10 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by RahulV on 02-11-2016.
@@ -22,7 +27,8 @@ public class BidchatMessageList {
     Activity activity;
 
     /*ListView components*/
-    private ArrayAdapter<String> adapter;
+    private SimpleListAdapter adapter;
+    private boolean isScrollableToBottom = true;
     public BidchatMessageList(Activity activity, String jsonData) {
         this.activity = activity;
         try {
@@ -36,7 +42,7 @@ public class BidchatMessageList {
         }
 //        String data[] = new String[lstMessages.size()];
 //        data = lstMessages.toArray(data);
-        adapter = new ArrayAdapter<String>(activity, new FakeR(activity).getId("layout", "item"), lstMessages);
+        adapter = new SimpleListAdapter(lstMessages, activity);
         showListView();
     }
 
@@ -49,12 +55,43 @@ public class BidchatMessageList {
     {
         ListView listView = (ListView) findView("lv_anim_table");
         listView.setAdapter(adapter);
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                isScrollableToBottom = false;
+                cancelAllScheduledThreadAndStartNew();
+            }
+        });
     }
 
     public void addNewString(String data)
     {
-        lstMessages.add(0, data);
+        lstMessages.add(data);
         adapter.notifyDataSetChanged();
+        if (isScrollableToBottom)
+        {
+            ListView listView = (ListView) findView("lv_anim_table");
+            listView.smoothScrollToPosition(adapter.getCount());
+        }
+    }
+
+    private ScheduledExecutorService worker =
+            Executors.newSingleThreadScheduledExecutor();
+    public void cancelAllScheduledThreadAndStartNew()
+    {
+        //worker.shutdownNow(); //shut down the old tasks if any
+        //worker = Executors.newSingleThreadScheduledExecutor();
+        Runnable task = new Runnable() {
+            @Override
+            public void run() {
+                isScrollableToBottom = true;
+            }
+        };
+        worker.schedule(task, 5, TimeUnit.SECONDS);
     }
 
 

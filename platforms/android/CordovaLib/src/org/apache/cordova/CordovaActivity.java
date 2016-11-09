@@ -79,7 +79,7 @@ public class CordovaActivity extends Activity {
     public static String TAG = "CordovaActivity";
 
     // The webview for our app
-    protected CordovaWebView appView;
+    public CordovaWebView appView;
 
     private static int ACTIVITY_STARTING = 0;
     private static int ACTIVITY_RUNNING = 1;
