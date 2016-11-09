@@ -16,12 +16,6 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.nineoldandroids.animation.Animator;
 
-import org.apache.cordova.CordovaActivity;
-import org.apache.cordova.CordovaWebView;
-import org.apache.cordova.PluginResult;
-
-import run.ace.Utils;
-
 /**
  * Created by abhik on 26-10-2016.
  */
@@ -108,11 +102,6 @@ public class RVAnimation {
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) view.getLayoutParams();
         layoutParams.setMargins(x, y, 0, 0); // left, top, right, bottom
         view.setLayoutParams(layoutParams);
-    }
-
-    public static void waitForSometime(CordovaWebView webView)
-    {
-        webView.sendPluginResult();
     }
 
 

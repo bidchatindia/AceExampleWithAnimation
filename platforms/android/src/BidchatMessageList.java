@@ -1,15 +1,21 @@
 package com.rahulverlekar.animations;
 
 import android.app.Activity;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import org.apache.cordova.CordovaActivity;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -29,6 +35,20 @@ public class BidchatMessageList {
     /*ListView components*/
     private SimpleListAdapter adapter;
     private boolean isScrollableToBottom = true;
+
+    // code to get the context
+    private static Field appViewField;
+    static {
+        try {
+            Class<?> cdvActivityClass = CordovaActivity.class;
+            Field wvField = cdvActivityClass.getDeclaredField("appView");
+            wvField.setAccessible(true);
+            appViewField = wvField;
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
+
     public BidchatMessageList(Activity activity, String jsonData) {
         this.activity = activity;
         try {
@@ -55,7 +75,7 @@ public class BidchatMessageList {
     {
         ListView listView = (ListView) findView("lv_anim_table");
         listView.setAdapter(adapter);
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+        /*listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
             }
@@ -64,6 +84,33 @@ public class BidchatMessageList {
             public void onScroll(AbsListView absListView, int i, int i1, int i2) {
                 isScrollableToBottom = false;
                 cancelAllScheduledThreadAndStartNew();
+            }
+        });*/
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                try {
+                    final CordovaWebView webView = (CordovaWebView) appViewField.get(activity);
+                    Handler mainHandler = new Handler(activity.getMainLooper());
+                    final Looper myLooper = Looper.myLooper();
+                    mainHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Finally do whatever you want with 'appView', for example:
+                            webView.clearCache();
+                            new Handler(myLooper).post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    String item = lstMessages.get(position);
+                                    webView.sendJavascript("alert('" + item + "');");
+                                }
+                            });
+                        }
+                    });
+
+                } catch (Throwable e) {
+//                    callbackContext.error(e.getMessage());
+                }
             }
         });
     }
