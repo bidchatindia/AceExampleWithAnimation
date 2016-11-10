@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="bidchat-plugin-gradle"
+  version="1.0.0">
+
+  <name>bidchat-plugin-gradle</name>
+
+  <description>
+    Gradle Dependencies that will be added to project
+  </description>
+
+  <license>MIT</license>
+
+  <engines>
+    <engine name="cordova-android" version=">=4.0.0" />
+  </engines>
+
+  <!-- android -->
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+
+    </config-file>
+
+    <framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
+
+  </platform>
+</plugin>

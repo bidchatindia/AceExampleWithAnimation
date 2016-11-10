@@ -488,7 +488,8 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "cordova-plugin-ace": "0.1.2",
-    "cordova-plugin-whitelist": "1.3.0"
+    "cordova-plugin-whitelist": "1.3.0",
+    "bidchat-plugin-gradle": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

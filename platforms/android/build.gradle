@@ -24,7 +24,6 @@ apply plugin: 'android'
 buildscript {
     repositories {
         mavenCentral()
-        jcenter()
     }
 
     // Switch the Android Gradle plugin version requirement depending on the
@@ -38,7 +37,6 @@ buildscript {
 
 // Allow plugins to declare Maven dependencies via build-extras.gradle.
 repositories {
-    jcenter()
     mavenCentral()
 }
 
@@ -88,6 +86,7 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
+apply from: "bidchat-plugin-gradle/hellocordova-build-extras.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()
@@ -240,10 +239,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile 'com.plattysoft.leonids:LeonidsLib:1.3.2'
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.daimajia.easing:library:1.0.1@aar'
-    compile 'com.daimajia.androidanimations:library:1.1.3@aar'
     // SUB-PROJECT DEPENDENCIES START
     debugCompile project(path: "CordovaLib", configuration: "debug")
     releaseCompile project(path: "CordovaLib", configuration: "release")
