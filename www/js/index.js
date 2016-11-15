@@ -1,41 +1,18 @@
 var _nativePage;
 
 function initializeUI() {
-    /*ace.load("android://list_layout.xml", function(root) {
-        var popup = new ace.Popup();
-        popup.setContent(root);
-        popup.show();
-    });
-    document.getElementById('btn-open-popoup').addEventListener("click", function clickedOnBtn () {
-        onButtonClick();
-    });
-
-    document.getElementById('btn-do-native').addEventListener("click", function clickedOnBtn () {
-        loadNativeUI();
-    });
-
-    document.getElementById('btn-animate').addEventListener("click", function clickedOnBtn () {
-        animateUI();
-    });   
-
-    document.getElementById('btn-send-json').addEventListener("click", function clickedOnBtn () {
-        sendJsonData();
-    });*/
     var popup;
+    var acehelper;
     ace.load("android://yoyo_activity.xml", function(root) {
         popup = new ace.Popup();
         popup.setContent(root);
         popup.show();
+        acehelper = new AceHelper()
         document.getElementById('btn-animate-list').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
             $("#btn-add-listview, #btn-change-margin").show();
             animateList();
         });
-        /*document.getElementById('btn-change-margin').addEventListener("click", function clickedOnBtn() {
-            $("input").hide();
-            $("#btn-animate-list, #btn-change-margin").show();
-            changeButtonMargin();
-        });*/
         document.getElementById('btn-add-listview').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
             $("#btn-animate-list, #btn-change-margin").show();
@@ -55,7 +32,7 @@ function initializeUI() {
         document.getElementById('btn-change-margin').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
             $("#btn-change-margin, #btn-change-margin").show();
-            changeViewMargin();
+            sendParticleShower();
         });
 
     });
@@ -80,17 +57,7 @@ function loadNativeUI() {
 var animObj;
 
 function animateList() {
-    // ace.load("android://yoyo_activity.xml", function(root) {
-    //     if (animPopup == undefined) {
-    //         var animPopup = new ace.Popup();
-    //         animPopup.setContent(root);
-    //         animPopup.show();
-    //     };
-    // if (animObj == undefined) {
-    animObj = new ace.NativeObject(ace.valueOn({ android: "com.rahulverlekar.animations.RVAnimation" }));
-    animObj.invoke("MakeListViewWithAnimations", ace.android.getActivity());
-    // };
-    // });
+    acehelper.initAnimationView();
 }
 
 function changeButtonMargin() {
@@ -118,6 +85,13 @@ function sendJsonData() {
     var jsonObj = { "name": "rahul" };
     var obj = new ace.NativeObject(ace.valueOn({ android: "com.rahulverlekar.animations.RVAnimation" }));
     obj.invoke("getJsonData", ace.android.getActivity(), (jsonObj));
+}
+
+function sendParticleShower() {
+    var bodyRect = document.getElementById('btn-change-margin').getBoundingClientRect();
+    var obj = new ace.NativeObject(ace.valueOn({ android: "com.rahulverlekar.animations.ParticleAnimator" }));
+    var jsonObj = {"x":bodyRect.left, "y":bodyRect.top, "duration":2000, "max_particle": 200}
+    obj.invoke("startShower", ace.android.getActivity(), JSON.stringify(jsonObj));
 
 }
 
@@ -126,9 +100,7 @@ var listViewPopup;
 
 function addListView() {
     var jsonObj = ["name", "rahul", "abd", "dsadsa", "dsasadd", "qwewq", "last item"];
-    // if (listObj == undefined) {
-    listObj = new ace.NativeObject("com.rahulverlekar.animations.BidchatMessageList", ace.android.getActivity(), JSON.stringify(jsonObj));
-    // };
+    acehelper.initListView(jsonObj, "showAlert");
 }
 
 function hideAllPopups() {

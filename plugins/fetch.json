@@ -23,5 +23,13 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-splashscreen": {
+        "source": {
+            "type": "local",
+            "path": "C:\\proj\\plugin\\cordova-plugin-splashscreen"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

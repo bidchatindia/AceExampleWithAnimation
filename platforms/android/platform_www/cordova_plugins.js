@@ -482,6 +482,13 @@ module.exports = [
         "merges": [
             "ace.platform"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -489,7 +496,8 @@ module.exports.metadata =
 {
     "cordova-plugin-ace": "0.1.2",
     "cordova-plugin-whitelist": "1.3.0",
-    "bidchat-plugin-gradle": "1.0.0"
+    "bidchat-plugin-gradle": "1.0.0",
+    "cordova-plugin-splashscreen": "4.0.0"
 };
 // BOTTOM OF METADATA
 });

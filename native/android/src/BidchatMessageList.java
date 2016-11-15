@@ -13,6 +13,7 @@ import android.widget.SimpleAdapter;
 import org.apache.cordova.CordovaActivity;
 import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.json.JSONException;
 
 import java.lang.reflect.Field;
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 public class BidchatMessageList {
     List<String> lstMessages;
     Activity activity;
+    String callback;
 
     /*ListView components*/
     private SimpleListAdapter adapter;
@@ -52,10 +54,11 @@ public class BidchatMessageList {
     public BidchatMessageList(Activity activity, String jsonData) {
         this.activity = activity;
         try {
-            JSONArray array = new JSONArray(jsonData);
+            JSONObject array = new JSONObject(jsonData);
+            callback = array.getString("callback");
             lstMessages = new ArrayList<String>();
-            for (int i = 0; i < array.length(); i++) {
-                lstMessages.add(array.get(i).toString());
+            for (int i = 0; i < array.getJSONArray("data").length(); i++) {
+                lstMessages.add(array.getJSONArray("data").get(i).toString());
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -102,7 +105,7 @@ public class BidchatMessageList {
                                 @Override
                                 public void run() {
                                     String item = lstMessages.get(position);
-                                    webView.sendJavascript("alert('" + item + "');");
+                                    webView.sendJavascript(callback + "('" + item + "');");
                                 }
                             });
                         }
