@@ -7,16 +7,19 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-ace": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
-        },
-        "cordova-plugin-whitelist": {
+        "bidchat-photo-picker": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
         "bidchat-plugin-gradle": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         },
+        "cordova-plugin-ace": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
         "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "io.cordova.hellocordova"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "io.cordova.hellocordova"
         }
     },

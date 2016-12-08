@@ -9,6 +9,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-feature android:name="android.hardware.camera2" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        <activity android:configChanges="orientation|screenSize" android:name="com.desmond.squarecamera.CameraActivity" />
         <activity android:name="run.ace.AceActivity" xmlns:android="http://schemas.android.com/apk/res/android" />
     </application>
     <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="23" />

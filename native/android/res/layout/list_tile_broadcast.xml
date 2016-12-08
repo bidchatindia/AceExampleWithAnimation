@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/rl_avatar"
+        android:tag="rl_avatar"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/iv_check_box"
+            android:tag="iv_check_box"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/checkbox_on_background"
+            android:layout_alignParentRight="true" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_avatar"
+            android:tag="iv_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/btn_star_big_on" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_broadcast_data"
+        android:tag="ll_broadcast_data"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/rl_avatar"
+        android:padding="8dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txt_broadcast_name"
+            android:tag="txt_broadcast_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Bidchat Channel"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txt_broadcast_tag"
+            android:tag="txt_broadcast_tag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="#Actor #AskMeAnything"
+            android:textColor="@android:color/holo_blue_dark"/>
+
+        <TextView
+            android:id="@+id/txt_broadcast_description"
+            android:tag="txt_broadcast_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No Description\nwqewqewqewqewq"
+            android:textColor="@android:color/black"
+            android:maxLines="2"
+            android:ellipsize="end"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/txt_influencer_score_icon"
+                android:tag="txt_influencer_score_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="9M"
+                android:textColor="@android:color/holo_red_dark"
+                android:layout_marginRight="8dp" />
+
+            <TextView
+                android:id="@+id/txt_influencer_score"
+                android:tag="txt_influencer_score"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="9M"
+                android:textColor="@android:color/black"
+                android:layout_marginRight="16dp"/>
+
+            <TextView
+                android:id="@+id/txt_broadcast_likes_icon"
+                android:tag="txt_broadcast_likes_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="9M"
+                android:textColor="@android:color/darker_gray"
+                android:layout_marginRight="8dp"/>
+
+            <TextView
+                android:id="@+id/txt_broadcast_likes"
+                android:tag="txt_broadcast_likes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="9M"
+                android:textColor="@android:color/black"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/iv_favorite"
+        android:tag="iv_favorite"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_toRightOf="@id/ll_broadcast_data"
+        android:layout_centerVertical="true"
+        android:textSize="24sp"/>
+
+    <LinearLayout
+        android:layout_below="@id/ll_broadcast_data"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/darker_gray" />
+</RelativeLayout>

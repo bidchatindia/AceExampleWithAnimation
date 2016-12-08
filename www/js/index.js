@@ -1,8 +1,8 @@
 var _nativePage;
+var acehelper;
 
 function initializeUI() {
     var popup;
-    var acehelper;
     ace.load("android://yoyo_activity.xml", function(root) {
         popup = new ace.Popup();
         popup.setContent(root);
@@ -11,16 +11,16 @@ function initializeUI() {
         document.getElementById('btn-animate-list').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
             $("#btn-add-listview, #btn-change-margin").show();
-            animateList();
+            showBroadcaseList();
         });
         document.getElementById('btn-add-listview').addEventListener("click", function clickedOnBtn() {
             $("input").hide();
             $("#btn-animate-list, #btn-change-margin").show();
             addListView();
             setInterval(
-            function(){ 
-                addNewItem();
-            }, 3000);
+                function() {
+                    addNewItem();
+                }, 3000);
         });
 
         document.getElementById('btn-add-newdata').addEventListener("click", function clickedOnBtn() {
@@ -33,6 +33,14 @@ function initializeUI() {
             $("input").hide();
             $("#btn-change-margin, #btn-change-margin").show();
             sendParticleShower();
+        });
+
+        document.getElementById('btn-open-camera').addEventListener("click", function clickedOnBtn() {
+            cordova.plugins.PhotoPicker.takePhoto(function success(argument) {
+                alert(argument);
+            }, function error(argument) {
+                alert(argument);
+            });
         });
 
     });
@@ -88,11 +96,14 @@ function sendJsonData() {
 }
 
 function sendParticleShower() {
-    var bodyRect = document.getElementById('btn-change-margin').getBoundingClientRect();
-    var obj = new ace.NativeObject(ace.valueOn({ android: "com.rahulverlekar.animations.ParticleAnimator" }));
-    var jsonObj = {"x":bodyRect.left, "y":bodyRect.top, "duration":2000, "max_particle": 200}
-    obj.invoke("startShower", ace.android.getActivity(), JSON.stringify(jsonObj));
+    var bodyRect = document.getElementById('placed_text').getBoundingClientRect();
+    var jsonObj = { "x": bodyRect.top, "y": bodyRect.left, "duration": 2000, "max_particle": 200 }
+    acehelper.startShower(jsonObj);
 
+}
+
+function showBroadcaseList() {
+    acehelper.initBroadcastList();
 }
 
 var listObj;

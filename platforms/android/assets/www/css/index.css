@@ -33,6 +33,15 @@ body {
     top:0px;
 }
 
+#placed_text {
+    position: absolute;
+    background-color:#d00; 
+    width:32px; 
+    height:32px;
+    left: 150px;
+    top: 150px;
+}
+
 
 h1 {
     font-size:24px;

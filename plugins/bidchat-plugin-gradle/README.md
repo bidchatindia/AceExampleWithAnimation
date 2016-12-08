@@ -1,4 +1,4 @@
-# cordova-plugin-crop
+# cordova-plugin-gradle
 
 > Add any gradle dependency to the main project
 

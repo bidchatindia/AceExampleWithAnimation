@@ -86,6 +86,7 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
+apply from: "bidchat-photo-picker/hellocordova-build-extras.gradle"
 apply from: "bidchat-plugin-gradle/hellocordova-build-extras.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
@@ -242,6 +243,7 @@ dependencies {
     // SUB-PROJECT DEPENDENCIES START
     debugCompile project(path: "CordovaLib", configuration: "debug")
     releaseCompile project(path: "CordovaLib", configuration: "release")
+    compile "com.github.rahul-bidchat:BidchatPhotoPickerAndroid:992802dad8"
     // SUB-PROJECT DEPENDENCIES END
 }
 

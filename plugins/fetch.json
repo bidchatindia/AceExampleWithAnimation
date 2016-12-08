@@ -15,19 +15,26 @@
         "is_top_level": true,
         "variables": {}
     },
-    "bidchat-plugin-gradle": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/rahul-bidchat/Bidchat-plugin-gradle.git",
-            "subdir": "."
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-splashscreen": {
         "source": {
             "type": "local",
             "path": "C:\\proj\\plugin\\cordova-plugin-splashscreen"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "bidchat-photo-picker": {
+        "source": {
+            "type": "local",
+            "path": "e:\\git\\plugin\\PhotoPicker"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "bidchat-plugin-gradle": {
+        "source": {
+            "type": "local",
+            "path": "e:\\git\\plugin\\Bidchat-plugin-gradle"
         },
         "is_top_level": true,
         "variables": {}
